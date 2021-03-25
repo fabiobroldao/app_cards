@@ -1,14 +1,10 @@
-import 'dart:collection';
 import 'dart:convert';
 
-import 'package:app_cards/pages/user.dart';
-import 'package:http/http.dart' as http;
+import 'package:app_cards/model/user.dart';
+import 'package:dio/dio.dart';
 
 class LoginAPI {
   static Future<User> login(String user, String password) async {
-    var url = Uri.parse('https://api-cards-growdev.herokuapp.com/login');
-
-    var header = {"content-type": "application/json"};
     Map params = {
       "email": user,
       "password": password,
@@ -16,16 +12,23 @@ class LoginAPI {
     var usuario;
 
     var _body = json.encode(params);
-    print("json enviado : $_body");
 
-    var response = await http.post(
-      url,
-      headers: header,
-      body: _body,
-    );
+    Response response;
+    Dio dio = new Dio();
+
+    response = await dio.post('https://api-cards-growdev.herokuapp.com/login',
+        data: _body);
+
+    //var url = Uri.parse('https://api-cards-growdev.herokuapp.com/login');
+
+    //var header = {"content-type": "application/json"};
+
+    print("json enviado : $_body");
+    print(response);
+
     print('Response status: ${response.statusCode}');
 
-    Map mapResponse = json.decode(response.body);
+    Map mapResponse = json.decode(response.toString());
 
     if (response.statusCode == 200) {
       usuario = User.fromJson(mapResponse);

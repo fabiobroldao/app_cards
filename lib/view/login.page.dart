@@ -1,6 +1,6 @@
-import 'package:app_cards/pages/alerta.dart';
-import 'package:app_cards/pages/home.page.dart';
-import 'package:app_cards/pages/login.api.dart';
+import 'package:app_cards/view/alerta.dart';
+import 'package:app_cards/view/home.page.dart';
+import 'package:app_cards/repository/login.services.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
