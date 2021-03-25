@@ -19,10 +19,6 @@ class LoginAPI {
     response = await dio.post('https://api-cards-growdev.herokuapp.com/login',
         data: _body);
 
-    //var url = Uri.parse('https://api-cards-growdev.herokuapp.com/login');
-
-    //var header = {"content-type": "application/json"};
-
     print("json enviado : $_body");
     print(response);
 
