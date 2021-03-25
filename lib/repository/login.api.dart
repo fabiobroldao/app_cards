@@ -5,7 +5,7 @@ import 'package:app_cards/pages/user.dart';
 import 'package:http/http.dart' as http;
 
 class LoginAPI {
-  static Future<Usuario> login(String user, String password) async {
+  static Future<User> login(String user, String password) async {
     var url = Uri.parse('https://api-cards-growdev.herokuapp.com/login');
 
     var header = {"content-type": "application/json"};
@@ -28,7 +28,7 @@ class LoginAPI {
     Map mapResponse = json.decode(response.body);
 
     if (response.statusCode == 200) {
-      usuario = Usuario.fromJson(mapResponse);
+      usuario = User.fromJson(mapResponse);
     } else {
       usuario = null;
     }
